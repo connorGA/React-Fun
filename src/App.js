@@ -2,8 +2,11 @@ import './App.css';
 import React, { Component } from 'react';
 import ToggleButton from './components/ToggleButton';
 import Home from './components/Home';
-import SlideOne from './components/SlideOne';
-import SlideTwo from './components/SlideTwo';
+import Slide1 from './components/Slide1';
+import Slide2 from './components/Slide2';
+import Slide3 from './components/Slide3';
+import Slide4 from './components/Slide4';
+import Slide5 from './components/Slide5';
 
 
 
@@ -21,13 +24,13 @@ class App extends Component {
 
   toggleComponents() {
     this.setState((state) => {
-      const newIndex = (state.currentIndex + 1) % 3;
+      const newIndex = (state.currentIndex + 1) % 6;
       return { currentIndex: newIndex };
     });
   }
 
   render() {
-    const components = [<Home />, <SlideOne />, <SlideTwo />];
+    const components = [<Home />, <Slide1 />, <Slide2 />, <Slide3 />, <Slide4 />, <Slide5 />];
     const currentComponent = components[this.state.currentIndex];
     return (
       <div>
