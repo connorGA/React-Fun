@@ -29,9 +29,13 @@ class App extends Component {
   render() {
     return (
       <div>
-        {this.state.showHome && <Home />}
-        {this.state.showSlideOne && <SlideOne />}
-        <ToggleButton onClick={this.toggleComponents} />
+        <div className='slide_container'>
+          {this.state.showHome && <Home />}
+          {this.state.showSlideOne && <SlideOne />}
+        </div>
+        <div className='toggle'>
+          <ToggleButton onClick={this.toggleComponents} />
+        </div>
       </div>
     );
   }
