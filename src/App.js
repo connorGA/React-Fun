@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import ToggleButton from './components/ToggleButton';
 import Home from './components/Home';
 import SlideOne from './components/SlideOne';
+import SlideTwo from './components/SlideTwo';
 
 
 
@@ -13,25 +14,25 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showHome: true,
-      showSlideOne: false,
+      currentIndex: 0,
     };
     this.toggleComponents = this.toggleComponents.bind(this);
   }
 
   toggleComponents() {
-    this.setState((state) => ({
-      showHome: !state.showHome,
-      showSlideOne: !state.showSlideOne,
-    }));
+    this.setState((state) => {
+      const newIndex = (state.currentIndex + 1) % 3;
+      return { currentIndex: newIndex };
+    });
   }
 
   render() {
+    const components = [<Home />, <SlideOne />, <SlideTwo />];
+    const currentComponent = components[this.state.currentIndex];
     return (
       <div>
         <div className='slide_container'>
-          {this.state.showHome && <Home />}
-          {this.state.showSlideOne && <SlideOne />}
+          {currentComponent}
         </div>
         <div className='toggle'>
           <ToggleButton onClick={this.toggleComponents} />
@@ -40,6 +41,7 @@ class App extends Component {
     );
   }
 }
+
 
 
 export default App
