@@ -8,6 +8,7 @@ import Slide3 from './components/Slide3';
 import Slide4 from './components/Slide4';
 import Slide5 from './components/Slide5';
 import Slide6 from './components/Slide6';
+import Slide7 from './components/Slide7';
 
 class App extends Component {
   constructor(props) {
@@ -20,23 +21,34 @@ class App extends Component {
 
   toggleComponents() {
     this.setState((state) => {
-      const newIndex = (state.currentIndex + 1) % 7;
+      const newIndex = (state.currentIndex + 1) % 8;
       return { currentIndex: newIndex };
     });
   }
 
   render() {
-    const components = [<Home />, <Slide1 />, <Slide2 />, <Slide3 />, <Slide4 />, <Slide5 />, <Slide6 />];
+    const components = [<Home />, <Slide1 />, <Slide2 />, <Slide3 />, <Slide4 />, <Slide5 />, <Slide6 />, <Slide7 />];
     const currentComponent = components[this.state.currentIndex];
 
+    //make button bounce on Slide6
     let toggleButtonClass = 'toggle-button';
     if (this.state.currentIndex === 6) {
       toggleButtonClass += '-bounce';
     }
     console.log(toggleButtonClass);
 
+    //make button dark mode on Slide7
+    let toggleBodyClass = 'body';
+    if (this.state.currentIndex === 7) {
+      toggleBodyClass = 'body-darkMode';
+      toggleButtonClass += '-darkMode';
+    }
+    
+    console.log(toggleButtonClass);
+    console.log(toggleBodyClass);
+
     return (
-      <div>
+      <div className={toggleBodyClass}>
         <div className='slide_container'>
           {currentComponent}
         </div>
